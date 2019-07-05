@@ -45,7 +45,7 @@ impl PeerMap {
         let (node_ptr, last_needs_updating) = match self.map.entry(id) {
             Occupied(mut entry) => (entry.get_mut().as_mut().as_ptr(), false),
             Vacant(entry) => {
-                let mut node = Box::pin(Node::new(id, PeerComms::server()));
+                let mut node = Box::pin(Node::new(id, PeerComms::new()));
                 let mut node = entry.insert(node);
                 (node.as_mut().as_ptr(), true)
             }
