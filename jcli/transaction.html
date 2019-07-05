@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Transaction - Jormungandr</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="affix"><a href="../introduction.html">Introduction</a></li><li><a href="../concepts/introduction.html"><strong aria-hidden="true">1.</strong> General Concepts</a></li><li><ol class="section"><li><a href="../concepts/blockchain.html"><strong aria-hidden="true">1.1.</strong> Blockchain concepts</a></li><li><a href="../concepts/stake.html"><strong aria-hidden="true">1.2.</strong> Stake</a></li><li><a href="../concepts/node.html"><strong aria-hidden="true">1.3.</strong> Node organisation</a></li></ol></li><li><a href="../quickstart/introduction.html"><strong aria-hidden="true">2.</strong> Quickstart</a></li><li><ol class="section"><li><a href="../quickstart/01_command_line.html"><strong aria-hidden="true">2.1.</strong> Command lines tools</a></li><li><a href="../quickstart/02_passive_node.html"><strong aria-hidden="true">2.2.</strong> Starting a passive node</a></li><li><a href="../quickstart/03_rest_api.html"><strong aria-hidden="true">2.3.</strong> REST API</a></li><li><a href="../quickstart/04_leader_candidate.html"><strong aria-hidden="true">2.4.</strong> Starting as a leader candidate</a></li></ol></li><li><a href="../configuration/introduction.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li><a href="../configuration/logging.html"><strong aria-hidden="true">3.1.</strong> Logging</a></li><li><a href="../configuration/network.html"><strong aria-hidden="true">3.2.</strong> Node network</a></li></ol></li><li><a href="../jcli/introduction.html"><strong aria-hidden="true">4.</strong> jcli</a></li><li><ol class="section"><li><a href="../jcli/key.html"><strong aria-hidden="true">4.1.</strong> Cryptographic keys</a></li><li><a href="../jcli/address.html"><strong aria-hidden="true">4.2.</strong> Address</a></li><li><a href="../jcli/transaction.html" class="active"><strong aria-hidden="true">4.3.</strong> Transaction</a></li><li><a href="../jcli/certificate.html"><strong aria-hidden="true">4.4.</strong> Certificate</a></li><li><a href="../jcli/genesis.html"><strong aria-hidden="true">4.5.</strong> Genesis</a></li><li><a href="../jcli/rest.html"><strong aria-hidden="true">4.6.</strong> REST</a></li></ol></li><li><a href="../stake_pool/introduction.html"><strong aria-hidden="true">5.</strong> staking and stake pool</a></li><li><ol class="section"><li><a href="../stake_pool/delegating_stake.html"><strong aria-hidden="true">5.1.</strong> delegating your stake</a></li><li><a href="../stake_pool/registering_stake_pool.html"><strong aria-hidden="true">5.2.</strong> registering stake pool</a></li></ol></li><li><a href="../advanced/introduction.html"><strong aria-hidden="true">6.</strong> Advanced</a></li><li><ol class="section"><li><a href="../advanced/01_the_genesis_block.html"><strong aria-hidden="true">6.1.</strong> Genesis block</a></li><li><a href="../advanced/02_starting_bft_blockchain.html"><strong aria-hidden="true">6.2.</strong> Starting a bft blockchain</a></li><li><a href="../advanced/03_starting_genesis_praos_blockchain.html"><strong aria-hidden="true">6.3.</strong> Starting a genesis blockchain</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Jormungandr</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#transaction" id="transaction"><h1>transaction</h1></a>
+<p>Tooling for offline transaction creation and signing.</p>
+<pre><code>jcli transaction
+</code></pre>
+<p>Those familiar with <a href="http://github.com/input-output-hk/cardano-cli"><code>cardano-cli</code></a>
+transaction builder will see resemblance in <code>jcli transaction</code>.</p>
+<p>There is a couple of commands that can be used to:</p>
+<ol>
+<li>prepare a transaction:
+<ul>
+<li><code>new</code> create a new empty transaction;</li>
+<li><code>add-input</code></li>
+<li><code>add-account</code></li>
+<li><code>add-output</code></li>
+</ul>
+</li>
+<li><code>finalize</code> the transaction for signing:</li>
+<li>create witnesses and add the witnesses:
+<ul>
+<li><code>make-witness</code></li>
+<li><code>add-witness</code></li>
+</ul>
+</li>
+<li><code>seal</code> the transaction, ready to send to the blockchain</li>
+</ol>
+<p>There are also functions to help decode and display the
+content information of a transaction:</p>
+<ul>
+<li><code>info</code></li>
+<li><code>id</code> to get the <strong>Transaction ID</strong> of the transaction</li>
+<li><code>to-message</code> to get the hexadecimal encoded message, ready to send with <code>cli rest message</code></li>
+</ul>
+<a class="header" href="#examples" id="examples"><h1>Examples</h1></a>
+<p>The following example focuses on using an utxo as input, the few differences when transfering from an account will be pointed out when necessary.
+There is also a script <a href="https://github.com/input-output-hk/jormungandr/blob/master/scripts/send-transaction">here</a> to send a transaction from a faucet account to a specific address which could be used as a reference.</p>
+<p>Let's use the following utxo as input and transfer 50 lovelaces to the destination address</p>
+<a class="header" href="#input-utxo" id="input-utxo"><h2>Input utxo</h2></a>
+<table><thead><tr><th> Field                     </th><th align="center"> Value        </th></tr></thead><tbody>
+<tr><td> UTXO's transaction ID     </td><td align="center"> 55762218e5737603e6d27d36c8aacf8fcd16406e820361a8ac65c7dc663f6d1c</td></tr>
+<tr><td> UTXO's output index       </td><td align="center"> 0     </td></tr>
+<tr><td> associated address        </td><td align="center">  ca1q09u0nxmnfg7af8ycuygx57p5xgzmnmgtaeer9xun7hly6mlgt3pjyknplu    </td></tr>
+<tr><td> associated value          </td><td align="center"> 100             </td></tr>
+</tbody></table>
+<a class="header" href="#destination-address" id="destination-address"><h2>Destination address</h2></a>
+<p><strong>addressca1qvnr5pvt9e5p009strshxndrsx5etcentslp2rwj6csm8sfk24a2wlqtdj6</strong></p>
+<a class="header" href="#create-a-staging-area" id="create-a-staging-area"><h2>Create a staging area</h2></a>
+<pre><code class="language-sh">jcli transaction new &gt; tx
+</code></pre>
+<a class="header" href="#add-input" id="add-input"><h2>Add input</h2></a>
+<p>For the input, we need to reference the uxto with the <strong>UTXO's transaction ID</strong> and <strong>UTXO'S output index</strong> fields and we need to specify how much coins are there with the <strong>associated value</strong> field.</p>
+<a class="header" href="#example" id="example"><h3>Example</h3></a>
+<pre><code class="language-sh">jcli transaction add-input  55762218e5737603e6d27d36c8aacf8fcd16406e820361a8ac65c7dc663f6d1c 0 100 --staging tx
+</code></pre>
+<a class="header" href="#account-input" id="account-input"><h3>Account input</h3></a>
+<p>If the input is an account, the command is slightly different</p>
+<pre><code class="language-sh">jcli transaction add-account account_address account_funds --staging tx
+</code></pre>
+<a class="header" href="#add-output" id="add-output"><h2>Add output</h2></a>
+<p>For the output, we need the address we want to transfer to, and the amount.</p>
+<pre><code class="language-sh">jcli transaction add-output  ca1qvnr5pvt9e5p009strshxndrsx5etcentslp2rwj6csm8sfk24a2wlqtdj650 --staging tx
+</code></pre>
+<a class="header" href="#add-fee-and-change-address" id="add-fee-and-change-address"><h2>Add fee and change address</h2></a>
+<p>We want to get the change in the same address that we are sending from (the <em>associated address</em> of the utxo). We also specify how to compute the fees.
+You can leave out the <code>--fee-constant 5 --fee-coefficient 2</code> part if those are both 0.</p>
+<pre><code class="language-sh">jcli transaction finalize  ca1q09u0nxmnfg7af8ycuygx57p5xgzmnmgtaeer9xun7hly6mlgt3pjyknplu --fee-constant 5 --fee-coefficient 2 --staging tx
+</code></pre>
+<p>Now, if you run</p>
+<pre><code class="language-sh">jcli transaction info --fee-constant 5 --fee-coefficient 2 --staging tx
+</code></pre>
+<p>You should see something like this</p>
+<pre><code class="language-plaintext">Transaction `0df39a87d3f18a188b40ba8c203f85f37af665df229fb4821e477f6998864273' (finalizing)
+  Input:   100
+  Output:  89
+  Fees:    11
+  Balance: 0
+ - 55762218e5737603e6d27d36c8aacf8fcd16406e820361a8ac65c7dc663f6d1c:0 100
+ + ca1qvnr5pvt9e5p009strshxndrsx5etcentslp2rwj6csm8sfk24a2wlqtdj650 50
+ + ca1q09u0nxmnfg7af8ycuygx57p5xgzmnmgtaeer9xun7hly6mlgt3pjyknplu 39
+</code></pre>
+<a class="header" href="#sign-the-transaction" id="sign-the-transaction"><h2>Sign the transaction</h2></a>
+<a class="header" href="#make-witness" id="make-witness"><h3>Make witness</h3></a>
+<p>For signing the transaction, you need the private key associated with the input address (the one that's in the utxos) and the hash of the genesis block of the network you are connected to.</p>
+<p>The genesis' hash is needed for ensuring that the transaction cannot be re-used in another blockchain and for security concerns on offline transaction signing, as we are signing the transaction for the specific blockchain started by this block0 hash.</p>
+<p>The following command takes the private key in the <em>key.prv</em> file and creates a witness in a file named <em>witness</em> in the current directory.</p>
+<pre><code class="language-sh">jcli transaction make-witness --genesis-block-hash abcdef987654321... --type utxo txid witness key.prv
+</code></pre>
+<hr />
+<a class="header" href="#account-input-1" id="account-input-1"><h4>Account input</h4></a>
+<p>When using an account as input, the command takes <code>account</code> as the type and an additional parameter: <code>--account-spending-counter</code>, that should be increased every time the account is used as input.</p>
+<p>e.g.</p>
+<pre><code class="language-sh">jcli transaction make-witness --genesis-block-hash abcdef987654321... --type account --account-spending-counter 0 witness key.prv
+</code></pre>
+<a class="header" href="#add-witness" id="add-witness"><h3>Add witness</h3></a>
+<pre><code class="language-sh">jcli transaction add-witness witness --staging tx
+</code></pre>
+<a class="header" href="#send-the-transaction" id="send-the-transaction"><h2>Send the transaction</h2></a>
+<pre><code class="language-sh">jcli transaction seal --staging tx
+</code></pre>
+<pre><code class="language-sh">jcli transaction to-message --staging tx &gt; txmsg
+</code></pre>
+<p>Send it using the rest api</p>
+<pre><code class="language-sh">jcli rest v0 message post -f txmsg --host http://127.0.0.1:8443/api
+</code></pre>
+<a class="header" href="#checking-if-the-transaction-was-accepted" id="checking-if-the-transaction-was-accepted"><h2>Checking if the transaction was accepted</h2></a>
+<p>You can check if the transaction was accepted by checking the node logs, for example, if the transaction is accepted</p>
+<p><code>jcli rest v0 message logs -h http://127.0.0.1:8443/api</code></p>
+<pre><code class="language-plaintext">---
+- fragment_id: d6ef0b2148a51ed64531efc17978a527fd2d2584da1e344a35ad12bf5460a7e2
+  last_updated_at: &quot;2019-06-11T15:38:17.070162114Z&quot;
+  received_at: &quot;2019-06-11T15:37:09.469101162Z&quot;
+  received_from: Rest
+  status:
+    InABlock: &quot;4.707&quot;
+</code></pre>
+<p>Where the InABlock status means that the transaction was accepted in the block with date &quot;4.707&quot;.</p>
+<p>The status here could also be:</p>
+<p>Pending: if the transaction is received and is pending being added in the blockchain (or rejected).</p>
+<p>or</p>
+<p>Rejected: with an attached message of the reason the transaction was rejected.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../jcli/address.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../jcli/certificate.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../jcli/address.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../jcli/certificate.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
