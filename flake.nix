@@ -16,7 +16,7 @@
 
     rec {
 
-      defaultPackage = stdenv.mkDerivation {
+      builders.buildJormungandr = { isShell }: stdenv.mkDerivation {
         name = "jormungandr-${lib.substring 0 8 inputs.self.lastModified}-${inputs.self.shortRev or "0000000"}";
 
         buildInputs =
@@ -24,19 +24,21 @@
             cargo
             sqlite
             protobuf
-            rustfmt
             pkgconfig
             openssl
+          ] ++ (if isShell then [
+            rustfmt
+          ] else [
             (inputs.import-cargo.builders.importCargo {
               lockFile = ./Cargo.lock;
               inherit pkgs;
             }).cargoHome
-          ];
+          ]);
 
         # FIXME: we can remove this once prost is updated.
         PROTOC = "${protobuf}/bin/protoc";
 
-        src = inputs.self;
+        src = if isShell then null else inputs.self;
 
         postUnpack =
           ''
@@ -58,7 +60,11 @@
           '';
       };
 
+      defaultPackage = builders.buildJormungandr { isShell = false; };
+
       checks.build = defaultPackage;
+
+      devShell = builders.buildJormungandr { isShell = true; };
 
     };
 }
