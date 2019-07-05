@@ -43,13 +43,18 @@
         postUnpack =
           ''
             # FIXME: add submodule support to Nix
+            rmdir $sourceRoot/chain-deps || true
             ln -s ${builtins.fetchTarball {
               url = "https://github.com/input-output-hk/chain-libs/archive/9c1111a2e842439653be04351e983bf63105ba36.tar.gz";
               sha256 = "15bma8cldkfqd5183m7akzgrp36ayhxq4f2sscrl86mbk3qdawwm";
             }} $sourceRoot/chain-deps
           '';
 
-        buildPhase = ":";
+        buildPhase = "cargo build --release";
+
+        doCheck = true;
+
+        checkPhase = "cargo test --release";
 
         installPhase =
           ''
